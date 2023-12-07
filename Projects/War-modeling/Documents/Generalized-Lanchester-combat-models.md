@@ -9,10 +9,10 @@ October 2023
 
 ## Introduction
 
-In this notebook we present generalized [Lanchester combat models](https://en.wikipedia.org/wiki/Lanchester%27s_laws) and use one of them for simulation and calibration examples with data of the [Battle of Iwo Jima](https://en.wikipedia.org/wiki/Battle_of_Iwo_Jima).
+In this notebook we present several generalized [Lanchester combat models](https://en.wikipedia.org/wiki/Lanchester%27s_laws) and use one of them for simulation and calibration examples with data concerning the [Battle of Iwo Jima](https://en.wikipedia.org/wiki/Battle_of_Iwo_Jima).
 
-**Remark:** The content of this notebook is intentionally theoretically fundamental, but short and simple both mathematically and code-wise. 
-Author's intent is to develop similar computational workflows for (1) field battles, like the [Normandy campaign](https://en.wikipedia.org/wiki/Operation_Overlord) during Word War II, 1944, or (2) urban warfare, like [Second Battle of Fallujah](https://en.wikipedia.org/wiki/Second_Battle_of_Fallujah), Iraq 2009, or [Battle of Bakhmut](https://en.wikipedia.org/wiki/Battle_of_Bakhmut), Ukraine 2023.
+**Remark:** The content of this notebook is intentionally theoretically grounded, but short and simple both mathematically and code-wise. 
+The author's intent is to develop similar computational workflows for (1) field battles, such as the [Normandy campaign](https://en.wikipedia.org/wiki/Operation_Overlord) during Word War II, 1944, or (2) urban warfare, such as the [Second Battle of Fallujah](https://en.wikipedia.org/wiki/Second_Battle_of_Fallujah), Iraq 2009, or the [Battle of Bakhmut](https://en.wikipedia.org/wiki/Battle_of_Bakhmut), Ukraine 2023.
 
 The main computational workflows are done with a 
 [System Dynamics (SD)](https://en.wikipedia.org/wiki/System_dynamics) 
@@ -24,23 +24,25 @@ The functions provided by the paclet [AAp2] have the prefix "SDMon", which stand
 
 ### Why use the Battle of Iwo Jima in examples?
 
-The examples below use the Battle of Iwo Jima because that is convenient both data-wise and mathematics-wise. Here are our reasons:
+The examples below use the Battle of Iwo Jima because it is convenient both data-wise and mathematics-wise. Here is our reasoning:
 
-- The battle is important for the USA military, hence well documented and used in multiple contexts.
+- The battle is important for the USA military, and therefore well documented and used in multiple cross-disciplinary contexts.
 
     - See, for example, mathematical articles like [JE1] and [RS1].
 
-- (Relatively) well curated data can be found. Like:
+- (Relatively) well-curated data can be found. For example:
 
     - Sizes of the military forces
 
     - Battle duration
+ 
+    - Precise timing
 
 - There is no need to:
 
     - Take care of negative stocks
 
-    - Simulate "will to fight" -- Japanese soldiers fought to the last one
+    - Simulate "will to fight" -- Japanese soldiers fought to the death
 
         - Japanese Prisoners Of War (POWs) became POWs because they were found unconscious...
 
@@ -62,7 +64,7 @@ Here is the invasion map of Iwo Jima, prepared in February 1945, [DR1]:
   Using the Battle of Iwo Jima data and related pre-computed rates.
 
 - **Calibration**
-  We can get the theoretically computed rates by using numerics!
+  We can get the theoretically computed rates by using numerics.
 
 - **Future plans**
   Make models, not war.
@@ -71,9 +73,9 @@ Here is the invasion map of Iwo Jima, prepared in February 1945, [DR1]:
 
 ## Generalized models
 
-This section presents a translation to English of  introductory paragraphs of [NM1]. (The same general model and breakdown is presented in [AS1].)
+This section presents a translation to English of the introductory paragraphs of [NM1]. The same general model and breakdown is presented in [AS1].
 
-In the most general form, the Lanchester models can be described by the by the equation:
+In their most general form, Lanchester models can be described by the following equation:
 
 $$
 \begin{align}
@@ -88,7 +90,7 @@ where:
 
 - $b$ and $f$ define the rate of losses due to exposure to area targets
 
-- $c$ and $g$  are losses due to forward enemy exposure
+- $c$ and $g$ are losses due to forward enemy exposure
 
 - $d$ and $h$ are approaching or retreating reserves
 
@@ -108,7 +110,7 @@ In this case:
 
 - This interaction is most relevant when the two sides are located in a common territory:
 
-    - Guerrilla warfare, repression, enmity between two ethnic groups, etc.
+    - Guerrilla warfare, repression, enmity between two ethnic groups, conflict over scarce resources, etc.
 
 #### **2.** ***Osipov*** model (coefficients $a$ and $e$)
 
@@ -120,13 +122,13 @@ In this case:
 
 - The number of casualties is determined by the size of one's side.
 
-- This could be a model of the Cold War, where the more of their submarines are on alert, the more of them die.
+- This could be a model of the Cold War, where the more submarines are on alert, the more of them die.
 
 #### **4.** ***Brackney*** model (coefficients $a$ and $f$ or $b$ and $e$)
 
 - The casualties of one side is proportional to the number of encounters and the other to the number of its opponent.
 
-- The model was inspired of the Vietnam War and describes quite satisfactory.
+- The model was inspired by the Vietnam War and describes asymmetric warfare quite satisfactorily.
 
     -  I.e. a conflict in which one side is engaged in classical warfare and the other in guerrilla warfare.
 

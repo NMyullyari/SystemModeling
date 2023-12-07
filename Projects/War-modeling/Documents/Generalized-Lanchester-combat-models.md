@@ -136,7 +136,7 @@ In this case:
 
 ## Model "rigidness"
 
-The simplest, with Osipov terms only, generalized Lanchester model is:
+The simplest generalized Lanchester model, with Osipov terms only, is:
 
 $$
 \begin{align}
@@ -155,9 +155,9 @@ $$a x(t) d x =b y(t) d y$$
 
 $$a x(t) ^2- b y(t)^2\text{==}\text{const}$$.
 
-The evolution of the number of soldiers of armies $x$ and $y$ occurs along the hyperbola given by the equation $a x(t) ^2- b y(t)^2\text{==}\text{const}.$ The war evolves along that hyperbola, hence it depends on the starting point.
+The evolution of army size $x$ and $y$ occurs along the hyperbola given by the equation $a x(t) ^2- b y(t)^2\text{==}\text{const}.$ The war evolves along that hyperbola, hence it depends on the starting point.
 
-The corresponding manifold of hyperbolas is separated by the line $a x = b y$. If the starting point lies above this line, then the hyperbola finishes on the $y$-axis. This means that in the course of the war army $x$ decreases to zero and army $y$ wins.
+The corresponding manifold of hyperbolas is separated by the line $a x = b y$. If the starting point lies above this line, then the hyperbola finishes on the $y$-axis. This means that in the course of the war army $x$ decreases to size zero and army $y$ wins.
 
 **Remark:** Note that if the efficiency coefficients $a$ and $b$ are not constant then the equation $a x = b y$ determines a curve.
 
@@ -220,7 +220,7 @@ aRates = <|
    |>;
 ```
 
-Here are rules that assign concrete values to the rates:
+Here are the rules that assign concrete values to the rates:
 
 ```mathematica
 aRateRules = <|
@@ -299,13 +299,13 @@ Clear[growthIwoJimaX];
 growthIwoJimaX[t_] := Piecewise[{{54000, 0 <= t < 1}, {6000, 2 <= t < 3}, {13000, 5 <= t < 6}}, 0]
 ```
 
-Here replace the constant term of the first equation in the generalized model with the growth function `growthIwoJimaX`.
+Here we replace the constant term of the first equation in the generalized model with the growth function `growthIwoJimaX`.
 
 ```mathematica
 model1a = model1 /. growthX -> growthIwoJimaX[t];
 ```
 
-Here create the monadic pipeline, put the fire efficiency rates found in [JE1], simulate the for battles number of days, and plot the result:
+Here we create the monadic pipeline, put in the fire efficiency rates found in [JE1], simulate the for battles number of days, and plot the result:
 
 ```mathematica
 sdObj =
@@ -337,11 +337,11 @@ sdObj =
 
 ## Calibration
 
-In this section we show that using optimization methods -- calibration -- we can obtain the same efficiency rates as the ones theoretically computed in [JE1] using the same data.
+In this section we show that by using optimization methods such as calibration, we can obtain the same efficiency rates as the ones theoretically computed in [JE1] using the same data.
 
 **Remark:** This should bring some confidence in using SDMon; and since the calibration process is easy to specify, it should encourage SDMon's use for other SD models.
 
-Consider the following ***calibration targets*** that are "time series" each derived via linear interpolation from two data points -- the start- and end values of the number of soldiers for each army:
+Consider the following ***calibration targets*** that are "time series" each derived via linear interpolation from two data points -- the start and end values of the number of soldiers for each army:
 
 ```mathematica
 aTargets2 = N@
@@ -384,15 +384,15 @@ sdObj2 =
 
 Here is a calibration pipeline that specifies:
 
-1. Target time series of the stocks
+- Target time series of the stocks
 
-1. Parameters to calibrate
+- Parameters to calibrate
 
-1. Parameter ranges, within which to search the calibration values
+- Parameter ranges, within which to search for the calibration values
 
-1. Distance function from the computed time series to the target time series
+- Distance function from the computed time series to the target time series
 
-1. Parameters for [NMinimize](https://reference.wolfram.com/language/ref/NMinimize.html)
+- Parameters for [NMinimize](https://reference.wolfram.com/language/ref/NMinimize.html)
 
 ```mathematica
 resCalibration = 
@@ -447,7 +447,9 @@ resCalibration2 =
 <|fireEfficiencyX -> 0.0106, fireEfficiencyY -> 0.0544|>
 ```
 
-**Remark:** Proper calibration time series for the USA soldiers stock $X$ can be obtained from the web page ["Iwo Jima, a look back"](https://www.recordsofwar.com/iwojimahistory/). (The corresponding data ingestion notebook is going to be published soon.)
+**Remark:** A proper calibration time series for the USA soldier stock $X$ can be obtained from the web page ["Iwo Jima, a look back"](https://www.recordsofwar.com/iwojimahistory/). (The corresponding data ingestion notebook is going to be published soon.)
+
+RECOMMEND CHANGE: **Remark:** A proper calibration time series for the value of USA soldier stock $X$ can be obtained...
 
 ------
 
@@ -465,13 +467,11 @@ Here are a few directions to extend this work into:
 
     - For example, as in [AA2].
 
-- Modeling the war impact on countries' economics and populations
+- Modeling the war impact on countries' economics and population.
 
-- Modeling the role of propaganda
+- Modeling the impact of propaganda.
 
-- Make interactive interfaces with knobs for the parameters
-
-    - With selectors of scenarios based on known battles.
+- Creation of interactive interfaces with knobs for the parameters, and selectors of scenarios based on known battles.
 
 ## Setup
 

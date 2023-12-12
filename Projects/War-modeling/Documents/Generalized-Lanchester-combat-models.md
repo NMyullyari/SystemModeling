@@ -11,7 +11,7 @@ October 2023
 
 In this notebook we present several generalized [Lanchester combat models](https://en.wikipedia.org/wiki/Lanchester%27s_laws) and use one of them for simulation and calibration examples with data concerning the [Battle of Iwo Jima](https://en.wikipedia.org/wiki/Battle_of_Iwo_Jima).
 
-**Remark:** The content of this notebook is intentionally theoretically grounded, but short and simple both mathematically and code-wise. 
+**Important Note:** The content of this notebook is intentionally theoretically grounded, but short and simple both mathematically and code-wise. 
 The author's intent is to develop similar computational workflows for (1) field battles, such as the [Normandy campaign](https://en.wikipedia.org/wiki/Operation_Overlord) during Word War II, 1944, or (2) urban warfare, such as the [Second Battle of Fallujah](https://en.wikipedia.org/wiki/Second_Battle_of_Fallujah), Iraq 2009, or the [Battle of Bakhmut](https://en.wikipedia.org/wiki/Battle_of_Bakhmut), Ukraine 2023.
 
 The main computational workflows are done with a 
@@ -36,7 +36,7 @@ The examples below use the Battle of Iwo Jima because it is convenient both data
 
     - Battle duration
  
-    - Precise timing
+    - Precise timing of key events
 
 - There is no need to:
 
@@ -44,7 +44,7 @@ The examples below use the Battle of Iwo Jima because it is convenient both data
 
     - Simulate "will to fight" -- Japanese soldiers fought to the death
 
-        - Japanese Prisoners Of War (POWs) became POWs because they were found unconscious...
+        - Japanese Prisoners Of War (POWs) became POWs only when they were found unconscious.
 
 Here is the invasion map of Iwo Jima, prepared in February 1945, [DR1]:
 
@@ -305,7 +305,7 @@ Here we replace the constant term of the first equation in the generalized model
 model1a = model1 /. growthX -> growthIwoJimaX[t];
 ```
 
-Here we create the monadic pipeline, put in the fire efficiency rates found in [JE1], simulate the for battles number of days, and plot the result:
+Here we create the monadic pipeline, put in the fire efficiency rates found in [JE1], simulate the duration of the battle in days, and plot the result:
 
 ```mathematica
 sdObj =
@@ -467,7 +467,7 @@ Here are a few directions to extend this work into:
 
     - For example, as in [AA2].
 
-- Modeling the war impact on countries' economics and population.
+- Modeling the impact of war on countries' economics and population.
 
 - Modeling the impact of propaganda.
 
